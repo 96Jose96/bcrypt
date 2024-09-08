@@ -36,7 +36,8 @@ router.post('/login', (req, res) => {
 
 
 router.get('/dashboard', (req, res) => {
-    const user = users.find(user => user.id === req.userId);
+    const userId = req.user
+    const user = users.find(user => user.id === userId);
 
     if (user) {
         res.send(`
@@ -49,7 +50,7 @@ router.get('/dashboard', (req, res) => {
             </form>
         `);
     } else {
-        res.status(404).json({ mensaje: 'Usuario no encontrado' });
+        res.status(401).json({ mensaje: 'Usuario no encontrado' });
     }
 });
 
