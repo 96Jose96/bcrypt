@@ -2,19 +2,15 @@ const jwt = require('jsonwebtoken');
 const { secret } = require('../crypto/config');
 
 function verifyToken(req, res, next) {
-    const token = req.session.token;
+  const token = req.session.token;
 
-    if (!token) {
-        return res.status(401).json({ mensaje: 'Token no generado' });
-    }
+  if (!token) {
+    return res.status(403).json({ message: 'Token no proporcionado' });
+  }
 
-    jwt.verify(token, secret, (err, decoded) => {
-        if (err) {
-            return res.status(401).json({ mensaje: 'Token inválido' });
-        }
-        req.user = decoded.user;
-        next();
-    });
+  const decoded = jwt.verify(token, secret);
+    req.user = decoded;
+    next();
 }
 
 module.exports = verifyToken;

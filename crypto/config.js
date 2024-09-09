@@ -1,15 +1,11 @@
 const crypto = require('crypto');
-const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 
 
 const secret = crypto.randomBytes(64).toString('hex');
-
-
-function generateToken(user) {
-    return jwt.sign({ userId: user.id }, secret, { expiresIn: '1h' });
-}
+const hashedSecret = bcrypt.hashSync(secret, 10); //NO HE SABIDO UTILIZARLO
 
 module.exports = {
-    secret,
-    generateToken
+  secret,
+  hashedSecret,
 };
