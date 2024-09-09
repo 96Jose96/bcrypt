@@ -1,6 +1,6 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
-const { secret } = require('../crypto/config');
+const secret = require('../crypto/config');
 const users = require('../data/users');
 const verifyToken = require('../middlewares/authMiddleware');
 

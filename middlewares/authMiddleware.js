@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { secret } = require('../crypto/config');
+const secret = require('../crypto/config');
 
 function verifyToken(req, res, next) {
   const token = req.session.token;

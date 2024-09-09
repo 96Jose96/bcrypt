@@ -1,6 +1,6 @@
 const express = require('express');
 const session = require('express-session');
-const { secret } = require('./crypto/config');
+const secret = require('./crypto/config');
 const router = require('./routes/users');
 
 const app = express();
